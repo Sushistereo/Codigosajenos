@@ -1,4 +1,25 @@
-.boton  {
-    background: blue;
-    color: white;
+body {
+    font-size: 10px;
+}
+
+.peopleContainer {
+    background: #F8F8F8;
+    display: grid;
+    margin: 1.6em auto 0;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10%;
+    padding: 50px;
+}
+
+.peopleCard img {
+    width: 75px;
+    height: 50px;
+    background: red;
+}
+
+.peopleCard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    font-size: 16px;
 }
