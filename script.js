@@ -9,16 +9,12 @@ async function getPeople(){
 }
     /*armar una funcion que recibiendo fname y lname devuelva fullname, que es un string*/
     function getFullName (fname, lname){
-        /* otra opción
-        const fullName = `${fname.charAt(0).toUpperCase() + fname.slice(1)} ${lname.charAt(0).toUpperCase() + lname.slice(1)}`*/
-        const fullName = fname[0].toUpperCase()+fname.substring(1).toLowerCase()+" "+lname.at(0).toUpperCase()+lname.substring(1).toLowerCase()
+         const fullName = fname[0].toUpperCase()+fname.substring(1).toLowerCase()+" "+lname.at(0).toUpperCase()+lname.substring(1).toLowerCase()
         
         return fullName
         
     }
-
 console.log(getFullName("fran","lacha"))    
-
 
     // Necesitamos 
     // {name,lastName,age,mail,profilePictureURL}
@@ -29,15 +25,26 @@ console.log(getFullName("fran","lacha"))
     
     function limpiarDatos (valores){
     //empieza la función
-    valores.forEach(persona => {
-        console.log(persona.name)
-       //mapear cada persona
-        
-    });
-    
+    const sanitizePeople = valores.map(person => {
+        return {
+            name: getFullName(person.name.first,person.name.last),
+            age: person.dob.age,
+            mail: person.email,
+            profilePictureURL: person.picture.thumbnail,
+        }
+    })
+    return sanitizePeople        
+    }
+
+    function renderPeople(personData){
+        console.log(personData)
+        /*crear elemnto html que contenga la estructura de la tarjeta y poner 
+        los literals a donde van los datos. 
+        Función create
+
     }
 
 window.onload = async()=>{
    const people = await getPeople()
-    limpiarDatos(people.results)
+    limpiarDatos(people.results).forEach(person => renderPeople(person))
 }
